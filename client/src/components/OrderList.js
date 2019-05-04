@@ -1,46 +1,15 @@
 import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { getOrderList } from "../actions/orderActions";
 
 // Images
 import check from "../images/check.png";
 import done from "../images/done.png";
 
 class OrderList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      orderList: [
-        {
-          id: 0,
-          nameProduct: "CNC 3 truc",
-          imgUrl: "http://lorempixel.com/240/120/",
-          nameCustomer: "Mr. A",
-          emailCustomer: "a@gmail.com",
-          phone: "0123456",
-          isDone: true
-        },
-        {
-          id: 1,
-          nameProduct: "CNC 4 truc",
-          imgUrl: "http://lorempixel.com/240/120/",
-          nameCustomer: "Mr. B",
-          emailCustomer: "b@gmail.com",
-          phone: "0123456",
-          isDone: false
-        },
-        {
-          id: 2,
-          nameProduct: "CNC 5 truc",
-          imgUrl: "http://lorempixel.com/240/120/",
-          nameCustomer: "Mr. C",
-          emailCustomer: "c@gmail.com",
-          phone: "0123456",
-          isDone: false
-        }
-      ]
-    };
-  }
-
   onCheckClick = id => {
     this.setState(state => ({
       orderList: state.orderList.map(item => {
@@ -59,7 +28,7 @@ class OrderList extends Component {
   };
 
   render() {
-    const { orderList } = this.state;
+    const { orderList } = this.props.orderList;
     return (
       <Table hover>
         <thead>
@@ -102,4 +71,16 @@ class OrderList extends Component {
   }
 }
 
-export default OrderList;
+OrderList.propTypes = {
+  orderList: PropTypes.object.isRequired,
+  getOrderList: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  orderList: state.orderList
+});
+
+export default connect(
+  mapStateToProps,
+  { getOrderList }
+)(OrderList);

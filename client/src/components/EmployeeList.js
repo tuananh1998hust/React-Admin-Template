@@ -1,42 +1,11 @@
 import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { getEmployeeList } from "../actions/employeeActions";
 
 class EmployeeList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      employeeList: [
-        {
-          id: 0,
-          name: "Nguyen Tuan Anh",
-          email: "tuananh1998.hust@gmail.com",
-          phone: "0349081709",
-          address: "Dan Phuong Hanoi",
-          gender: "Male",
-          position: "IT Leader"
-        },
-        {
-          id: 1,
-          name: "Nguyen Tuan Anh",
-          email: "tuananh1998.hust@gmail.com",
-          phone: "0349081709",
-          address: "Dan Phuong Hanoi",
-          gender: "Male",
-          position: "Lab Leader"
-        },
-        {
-          id: 2,
-          name: "Nguyen Tuan Anh",
-          email: "tuananh1998.hust@gmail.com",
-          phone: "0349081709",
-          address: "Dan Phuong Hanoi",
-          gender: "Male",
-          position: "manager"
-        }
-      ]
-    };
-  }
-
   onDeleteClick = id => {
     this.setState(state => ({
       employeeList: state.employeeList.filter(item => item.id !== id)
@@ -48,7 +17,7 @@ class EmployeeList extends Component {
   };
 
   render() {
-    const { employeeList } = this.state;
+    const { employeeList } = this.props.employeeList;
 
     return (
       <div>
@@ -94,4 +63,16 @@ class EmployeeList extends Component {
   }
 }
 
-export default EmployeeList;
+EmployeeList.propTypes = {
+  employeeList: PropTypes.object.isRequired,
+  getEmployeeList: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  employeeList: state.employeeList
+});
+
+export default connect(
+  mapStateToProps,
+  { getEmployeeList }
+)(EmployeeList);

@@ -1,35 +1,13 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { getCustomerList } from "../actions/customerActions";
 
 class CustomerList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      customerList: [
-        {
-          id: 0,
-          name: "Mr A",
-          email: "a@gmail.com",
-          phone: "0123456"
-        },
-        {
-          id: 1,
-          name: "Mr B",
-          email: "b@gmail.com",
-          phone: "0123456"
-        },
-        {
-          id: 2,
-          name: "Mr C",
-          email: "c@gmail.com",
-          phone: "0123456"
-        }
-      ]
-    };
-  }
-
   render() {
-    const { customerList } = this.state;
+    const { customerList } = this.props.customerList;
     return (
       <Table hover>
         <thead>
@@ -53,4 +31,16 @@ class CustomerList extends Component {
   }
 }
 
-export default CustomerList;
+CustomerList.propTypes = {
+  customerList: PropTypes.object.isRequired,
+  getCustomerList: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  customerList: state.customerList
+});
+
+export default connect(
+  mapStateToProps,
+  { getCustomerList }
+)(CustomerList);

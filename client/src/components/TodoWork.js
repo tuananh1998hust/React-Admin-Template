@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { getTodolist } from "../actions/todoActions";
 
 // Images
 import check from "../images/check.png";
@@ -11,13 +15,7 @@ import "./TodoWork.css";
 class TodoWork extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      todolist: [
-        { id: 0, title: "Work 1", isCompleted: true },
-        { id: 1, title: "Work 2", isCompleted: false },
-        { id: 2, title: "Work 3", isCompleted: false }
-      ]
-    };
+    this.state = {};
   }
 
   onSuccessClick = id => {
@@ -38,7 +36,7 @@ class TodoWork extends Component {
   };
 
   render() {
-    const { todolist } = this.state;
+    const { todolist } = this.props.todolist;
 
     return (
       <div className="list">
@@ -70,4 +68,16 @@ class TodoWork extends Component {
   }
 }
 
-export default TodoWork;
+TodoWork.propTypes = {
+  todolist: PropTypes.object.isRequired,
+  getTodolist: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  todolist: state.todolist
+});
+
+export default connect(
+  mapStateToProps,
+  { getTodolist }
+)(TodoWork);
