@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  margin: 20px 10px;
+  width: 300px;
+  align-items: center;
+  position: relative;
+}
+
+.item .check {
+  flex-grow: 3;
+}
+
+.item .img {
+  margin-right: 10px;
+}
+
+.item .btn {
+  flex-grow: 1;
+  position: absolute;
+  right: 10px;
+}
