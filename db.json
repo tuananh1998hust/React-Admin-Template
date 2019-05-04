@@ -1,0 +1,111 @@
+{
+	"orderList": [
+        {
+          "id": 0,
+          "nameProduct": "CNC 3 truc",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "nameCustomer": "Mr. A",
+          "emailCustomer": "a@gmail.com",
+          "phone": "0123456",
+          "isDone": true
+        },
+        {
+          "id": 1,
+          "nameProduct": "CNC 4 truc",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "nameCustomer": "Mr. B",
+          "emailCustomer": "b@gmail.com",
+          "phone": "0123456",
+          "isDone": false
+        },
+        {
+          "id": 2,
+          "nameProduct": "CNC 5 truc",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "nameCustomer": "Mr. C",
+          "emailCustomer": "c@gmail.com",
+          "phone": "0123456",
+          "isDone": false
+        }
+      ],
+	"customerList": [
+        {
+          "id": 0,
+          "name": "Mr A",
+          "email": "a@gmail.com",
+          "phone": "0123456"
+        },
+        {
+          "id": 1,
+          "name": "Mr B",
+          "email": "b@gmail.com",
+          "phone": "0123456"
+        },
+        {
+          "id": 2,
+          "name": "Mr C",
+          "email": "c@gmail.com",
+          "phone": "0123456"
+        }
+      ],
+	"productList": [
+        {
+          "id": 0,
+          "name": "CNC",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "price": 100,
+          "desc": "Lorem pixel is dumply text",
+          "count": 100
+        },
+        {
+          "id": 1,
+          "name": "CNC",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "price": 100,
+          "desc": "Lorem pixel is dumply text",
+          "count": 100
+        },
+        {
+          "id": 2,
+          "name": "CNC",
+          "imgUrl": "http://lorempixel.com/240/120/",
+          "price": 100,
+          "desc": "Lorem pixel is dumply text",
+          "count": 100
+        }
+      ],
+	"employeeList": [
+        {
+          "id": 0,
+          "name": "Nguyen Tuan Anh",
+          "email": "tuananh1998.hust@gmail.com",
+          "phone": "0349081709",
+          "address": "Dan Phuong Hanoi",
+          "gender": "Male",
+          "position": "IT Leader"
+        },
+        {
+          "id": 1,
+          "name": "Nguyen Tuan Anh",
+          "email": "tuananh1998.hust@gmail.com",
+          "phone": "0349081709",
+          "address": "Dan Phuong Hanoi",
+          "gender": "Male",
+          "position": "Lab Leader"
+        },
+        {
+          "id": 2,
+          "name": "Nguyen Tuan Anh",
+          "email": "tuananh1998.hust@gmail.com",
+          "phone": "0349081709",
+          "address": "Dan Phuong Hanoi",
+          "gender": "Male",
+          "position": "manager"
+        }
+      ],
+	"todolist": [
+        { "id": 0, "title": "Work 1", "isCompleted": true },
+        { "id": 1, "title": "Work 2", "isCompleted": false },
+        { "id": 2, "title": "Work 3", "isCompleted": false }
+      ]
+}
