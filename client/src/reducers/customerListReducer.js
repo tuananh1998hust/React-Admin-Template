@@ -1,33 +1,23 @@
-import { GET_CUSTOMERLIST } from "../actions/types";
+import { GET_CUSTOMERLIST, SET_ITEMLOADING } from "../actions/types";
 
 const initialState = {
-  customerList: [
-    {
-      id: 0,
-      name: "Mr A",
-      email: "a@gmail.com",
-      phone: "0123456"
-    },
-    {
-      id: 1,
-      name: "Mr B",
-      email: "b@gmail.com",
-      phone: "0123456"
-    },
-    {
-      id: 2,
-      name: "Mr C",
-      email: "c@gmail.com",
-      phone: "0123456"
-    }
-  ]
+  customerList: [],
+  loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CUSTOMERLIST:
       return {
-        ...state
+        ...state,
+        customerList: [...action.payload],
+        loading: false
+      };
+
+    case SET_ITEMLOADING:
+      return {
+        ...state,
+        loading: true
       };
 
     default:

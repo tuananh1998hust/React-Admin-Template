@@ -13,9 +13,8 @@ import done from "../images/done.png";
 import "./TodoWork.css";
 
 class TodoWork extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  componentDidMount() {
+    this.props.getTodolist();
   }
 
   onSuccessClick = id => {

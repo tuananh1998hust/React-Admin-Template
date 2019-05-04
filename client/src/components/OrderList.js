@@ -10,6 +10,9 @@ import check from "../images/check.png";
 import done from "../images/done.png";
 
 class OrderList extends Component {
+  componentDidMount() {
+    this.props.getOrderList();
+  }
   onCheckClick = id => {
     this.setState(state => ({
       orderList: state.orderList.map(item => {

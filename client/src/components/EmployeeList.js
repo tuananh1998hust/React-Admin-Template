@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import { getEmployeeList } from "../actions/employeeActions";
 
 class EmployeeList extends Component {
+  componentDidMount() {
+    this.props.getEmployeeList();
+  }
   onDeleteClick = id => {
     this.setState(state => ({
       employeeList: state.employeeList.filter(item => item.id !== id)

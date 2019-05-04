@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import { getCustomerList } from "../actions/customerActions";
 
 class CustomerList extends Component {
+  componentDidMount() {
+    this.props.getCustomerList();
+  }
   render() {
     const { customerList } = this.props.customerList;
     return (

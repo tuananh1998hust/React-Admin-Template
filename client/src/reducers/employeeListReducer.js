@@ -1,42 +1,23 @@
-import { GET_EMPLOYEELIST } from "../actions/types";
+import { GET_EMPLOYEELIST, SET_ITEMLOADING } from "../actions/types";
 
 const initialState = {
-  employeeList: [
-    {
-      id: 0,
-      name: "Nguyen Tuan Anh",
-      email: "tuananh1998.hust@gmail.com",
-      phone: "0349081709",
-      address: "Dan Phuong Hanoi",
-      gender: "Male",
-      position: "IT Leader"
-    },
-    {
-      id: 1,
-      name: "Nguyen Tuan Anh",
-      email: "tuananh1998.hust@gmail.com",
-      phone: "0349081709",
-      address: "Dan Phuong Hanoi",
-      gender: "Male",
-      position: "Lab Leader"
-    },
-    {
-      id: 2,
-      name: "Nguyen Tuan Anh",
-      email: "tuananh1998.hust@gmail.com",
-      phone: "0349081709",
-      address: "Dan Phuong Hanoi",
-      gender: "Male",
-      position: "manager"
-    }
-  ]
+  employeeList: [],
+  loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_EMPLOYEELIST:
       return {
-        ...state
+        ...state,
+        employeeList: [...action.payload],
+        loading: false
+      };
+
+    case SET_ITEMLOADING:
+      return {
+        ...state,
+        loading: true
       };
 
     default:

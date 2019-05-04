@@ -6,6 +6,10 @@ import PropTypes from "prop-types";
 import { getProductList } from "../actions/productActions";
 
 class ProductList extends Component {
+  componentDidMount() {
+    this.props.getProductList();
+  }
+
   onSetCurrentProduct = id => {
     const num = prompt("Enter Current Products: ");
     if (num) {
