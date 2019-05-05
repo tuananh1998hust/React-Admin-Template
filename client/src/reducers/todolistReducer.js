@@ -1,4 +1,10 @@
-import { GET_TODOLIST, SET_ITEMLOADING } from "../actions/types";
+import {
+  GET_TODOLIST,
+  ADD_TODO,
+  SUCCESS_TODO,
+  DELETE_TODO,
+  SET_ITEMLOADING
+} from "../actions/types";
 
 const initialState = {
   todolist: [],
@@ -12,6 +18,29 @@ export default function(state = initialState, action) {
         ...state,
         todolist: [...action.payload],
         loading: false
+      };
+
+    case ADD_TODO:
+      return {
+        ...state,
+        todolist: [action.payload, ...state.todolist]
+      };
+
+    case SUCCESS_TODO:
+      return {
+        ...state,
+        todolist: state.todolist.map(item => {
+          if (item.id === action.payload) {
+            item.isCompleted = !item.isCompleted;
+          }
+          return item;
+        })
+      };
+
+    case DELETE_TODO:
+      return {
+        ...state,
+        todolist: state.todolist.filter(item => item.id !== action.payload)
       };
 
     case SET_ITEMLOADING:

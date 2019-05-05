@@ -7,6 +7,9 @@ export const GET_PRODUCTLIST = "GET_PRODUCTLIST";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const SET_CURRENT_PRODUCT = "SET_CURRENT_PRODUCT";
 export const GET_TODOLIST = "GET_TODOLIST";
+export const ADD_TODO = "ADD_TODO";
+export const SUCCESS_TODO = "SUCCESS_TODO";
+export const DELETE_TODO = "DELETE_TODO";
 export const SET_ITEMLOADING = "SET_ITEMLOADING";
 
 export const setItemLoading = () => {

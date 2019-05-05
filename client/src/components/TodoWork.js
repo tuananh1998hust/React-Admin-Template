@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getTodolist } from "../actions/todoActions";
+import { getTodolist, successClick, deleteClick } from "../actions/todoActions";
 
 // Images
 import check from "../images/check.png";
@@ -18,20 +18,11 @@ class TodoWork extends Component {
   }
 
   onSuccessClick = id => {
-    this.setState(state => ({
-      todolist: state.todolist.map(item => {
-        if (item.id === id) {
-          item.isCompleted = !item.isCompleted;
-        }
-        return item;
-      })
-    }));
+    this.props.successClick(id);
   };
 
   onDeleteClick = id => {
-    this.setState(state => ({
-      todolist: state.todolist.filter(item => item.id !== id)
-    }));
+    this.props.deleteClick(id);
   };
 
   render() {
@@ -69,7 +60,9 @@ class TodoWork extends Component {
 
 TodoWork.propTypes = {
   todolist: PropTypes.object.isRequired,
-  getTodolist: PropTypes.func.isRequired
+  getTodolist: PropTypes.func.isRequired,
+  successClick: PropTypes.func.isRequired,
+  deleteClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -78,5 +71,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTodolist }
+  { getTodolist, successClick, deleteClick }
 )(TodoWork);
