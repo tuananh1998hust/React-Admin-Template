@@ -1,4 +1,9 @@
-import { GET_PRODUCTLIST, SET_ITEMLOADING } from "../actions/types";
+import {
+  GET_PRODUCTLIST,
+  ADD_PRODUCT,
+  SET_CURRENT_PRODUCT,
+  SET_ITEMLOADING
+} from "../actions/types";
 
 const initialState = {
   productList: [],
@@ -12,6 +17,23 @@ export default function(state = initialState, action) {
         ...state,
         productList: [...action.payload],
         loading: false
+      };
+
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        productList: [...state.productList, action.payload]
+      };
+
+    case SET_CURRENT_PRODUCT:
+      return {
+        ...state,
+        productList: state.productList.map(item => {
+          if (item.id === action.payload.id) {
+            item.count = action.payload.count;
+          }
+          return item;
+        })
       };
 
     case SET_ITEMLOADING:

@@ -1,4 +1,3 @@
-import uuid from "uuid";
 import {
   GET_EMPLOYEELIST,
   DELETE_EMPLOYEE,
@@ -23,7 +22,7 @@ export default function(state = initialState, action) {
     case ADD_EMPLOYEE:
       return {
         ...state,
-        employeeList: [...state.employeeList, { id: uuid(), ...action.payload }]
+        employeeList: [...state.employeeList, action.payload]
       };
 
     case DELETE_EMPLOYEE:

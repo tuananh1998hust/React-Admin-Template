@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Table, Button } from "reactstrap";
+import { Table } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getProductList } from "../actions/productActions";
+import { getProductList, setCurrentProduct } from "../actions/productActions";
 
 class ProductList extends Component {
   componentDidMount() {
@@ -12,29 +12,16 @@ class ProductList extends Component {
 
   onSetCurrentProduct = id => {
     const num = prompt("Enter Current Products: ");
+    const count = { count: parseInt(num) };
     if (num) {
-      this.setState(state => ({
-        productList: state.productList.map(item => {
-          if (item.id === id) {
-            item.count = parseInt(num);
-          }
-          return item;
-        })
-      }));
+      this.props.setCurrentProduct(count, id);
     }
-  };
-
-  addProduct = () => {
-    console.log("Add Product");
   };
 
   render() {
     const { productList } = this.props.productList;
     return (
       <div>
-        <Button className="mb-5" onClick={this.addProduct}>
-          Add New Product
-        </Button>
         <Table hover>
           <thead>
             <tr>
@@ -69,7 +56,8 @@ class ProductList extends Component {
 
 ProductList.propTypes = {
   productList: PropTypes.object.isRequired,
-  getProductList: PropTypes.func.isRequired
+  getProductList: PropTypes.func.isRequired,
+  setCurrentProduct: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -78,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProductList }
+  { getProductList, setCurrentProduct }
 )(ProductList);
