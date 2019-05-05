@@ -1,4 +1,9 @@
-import { GET_ORDERLIST, SET_ITEMLOADING } from "../actions/types";
+import {
+  GET_ORDERLIST,
+  CHECK_ORDERLIST,
+  DELETE_ORDERLIST,
+  SET_ITEMLOADING
+} from "../actions/types";
 
 const initialState = {
   orderList: [],
@@ -12,6 +17,23 @@ export default function(state = initialState, action) {
         ...state,
         orderList: [...action.payload],
         loading: false
+      };
+
+    case CHECK_ORDERLIST:
+      return {
+        ...state,
+        orderList: state.orderList.map(item => {
+          if (item.id === action.payload) {
+            item.isDone = !item.isDone;
+          }
+          return item;
+        })
+      };
+
+    case DELETE_ORDERLIST:
+      return {
+        ...state,
+        orderList: state.orderList.filter(item => item.id !== action.payload)
       };
 
     case SET_ITEMLOADING:

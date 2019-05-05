@@ -3,7 +3,7 @@ import { Table, Button } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getOrderList } from "../actions/orderActions";
+import { getOrderList, checkList, deleteClick } from "../actions/orderActions";
 
 // Images
 import check from "../images/check.png";
@@ -14,20 +14,11 @@ class OrderList extends Component {
     this.props.getOrderList();
   }
   onCheckClick = id => {
-    this.setState(state => ({
-      orderList: state.orderList.map(item => {
-        if (item.id === id) {
-          item.isDone = !item.isDone;
-        }
-        return item;
-      })
-    }));
+    this.props.checkList(id);
   };
 
   onDeleteClick = id => {
-    this.setState(state => ({
-      orderList: state.orderList.filter(item => item.id !== id)
-    }));
+    this.props.deleteClick(id);
   };
 
   render() {
@@ -76,7 +67,9 @@ class OrderList extends Component {
 
 OrderList.propTypes = {
   orderList: PropTypes.object.isRequired,
-  getOrderList: PropTypes.func.isRequired
+  getOrderList: PropTypes.func.isRequired,
+  checkList: PropTypes.func.isRequired,
+  deleteClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -85,5 +78,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getOrderList }
+  { getOrderList, checkList, deleteClick }
 )(OrderList);
