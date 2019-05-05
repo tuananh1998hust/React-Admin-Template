@@ -3,20 +3,14 @@ import { Table, Button } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getEmployeeList } from "../actions/employeeActions";
+import { getEmployeeList, deleteEmployee } from "../actions/employeeActions";
 
 class EmployeeList extends Component {
   componentDidMount() {
     this.props.getEmployeeList();
   }
   onDeleteClick = id => {
-    this.setState(state => ({
-      employeeList: state.employeeList.filter(item => item.id !== id)
-    }));
-  };
-
-  addEmployee = () => {
-    console.log("Add New Employee");
+    this.props.deleteEmployee(id);
   };
 
   render() {
@@ -24,9 +18,6 @@ class EmployeeList extends Component {
 
     return (
       <div>
-        <Button className="mb-5" onClick={this.addEmployee}>
-          Add New Employee
-        </Button>
         <Table hover>
           <thead>
             <tr>
@@ -68,7 +59,8 @@ class EmployeeList extends Component {
 
 EmployeeList.propTypes = {
   employeeList: PropTypes.object.isRequired,
-  getEmployeeList: PropTypes.func.isRequired
+  getEmployeeList: PropTypes.func.isRequired,
+  deleteEmployee: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -77,5 +69,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getEmployeeList }
+  { getEmployeeList, deleteEmployee }
 )(EmployeeList);

@@ -1,4 +1,10 @@
-import { GET_EMPLOYEELIST, SET_ITEMLOADING } from "../actions/types";
+import uuid from "uuid";
+import {
+  GET_EMPLOYEELIST,
+  DELETE_EMPLOYEE,
+  ADD_EMPLOYEE,
+  SET_ITEMLOADING
+} from "../actions/types";
 
 const initialState = {
   employeeList: [],
@@ -12,6 +18,20 @@ export default function(state = initialState, action) {
         ...state,
         employeeList: [...action.payload],
         loading: false
+      };
+
+    case ADD_EMPLOYEE:
+      return {
+        ...state,
+        employeeList: [...state.employeeList, { id: uuid(), ...action.payload }]
+      };
+
+    case DELETE_EMPLOYEE:
+      return {
+        ...state,
+        employeeList: state.employeeList.filter(
+          item => item.id !== action.payload
+        )
       };
 
     case SET_ITEMLOADING:
